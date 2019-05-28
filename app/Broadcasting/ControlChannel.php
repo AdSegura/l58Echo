@@ -3,9 +3,8 @@
 namespace App\Broadcasting;
 
 use App\User;
-use App\Chat;
 
-class ChatChannel
+class ControlChannel
 {
     /**
      * Create a new channel instance.
@@ -23,8 +22,8 @@ class ChatChannel
      * @param  \App\User  $user
      * @return array|bool
      */
-    public function join(User $user, Chat $chat)
+    public function join(User $user, $id)
     {
-        return $chat->isUserAllow($user) ? $user : false;
+        return (int) $user->id === (int) $id;
     }
 }

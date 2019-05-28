@@ -38,6 +38,6 @@ class ChatMessageEvent implements ShouldBroadcast
      */
     public function broadcastOn()
     {
-        return new PrivateChannel($this->channel);
+        return new PresenceChannel($this->channel);
     }
 }

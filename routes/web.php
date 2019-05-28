@@ -1,6 +1,7 @@
 <?php
 
-use App\Events;
+use App\Events\ChatMessageEvent;
+use App\Events\ControlChannelEvent;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -18,7 +19,7 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::post('/chat/{$chat}', function (App\Chat $chat, Request $request) {
+Route::post('/chat/{chat}', function (App\Chat $chat, Request $request) {
     
     broadcast(new ChatMessageEvent(
             Auth::user()->name,
@@ -28,6 +29,29 @@ Route::post('/chat/{$chat}', function (App\Chat $chat, Request $request) {
     )->toOthers();
 
 	return ["ok" => true];
+});
+
+Route::get('/control', function () {
+    
+    broadcast(new ControlChannelEvent(
+            Auth::user(),
+            "msg control"
+    ));
+
+	return ["ok" => Auth::user()];
+});
+
+Route::get('/to/{chat}', function (App\Chat $chat) {
+
+       broadcast(new ChatMessageEvent(
+            Auth::user()->name,
+            $chat,
+            "HOLAAAA"
+            )
+    )->toOthers();
+
+
+	return ["ok" => Auth::user()];
 });
 
 Route::get('/home', 'HomeController@index')->name('home');

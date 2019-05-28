@@ -101,8 +101,14 @@
             // });
 
             window.Echo.join('u2u.1')
-            .listen('PresenceEvent', ({msg, user}) => {
+            .listen('ChatMessageEvent', ({msg, user}) => {
                 console.log(msg, user);
+            });
+
+            window.Echo.private('u.1')
+                .listen('\\App\\Events\ControlChannelEvent', (payload) => {
+                    console.log("WEEEEEE");
+                    console.log(payload);
             });
         },
         methods: {

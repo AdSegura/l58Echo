@@ -1,3 +1,16 @@
+# Laravel 5.8, Echo Server, Echo Client, Socket Io, Redis
+
+Laravel Chat App with PresenceChannels, using Echo Server as SocketIo server all connected with Redis.
+
+Frontend use Vue and Vue-Router.
+
+This is the flow when a user authenticate within Laravel App and then with Echo Server.
+
+Once authenticated, user can send a private message to another authenticated user.
+
+![Auth Flow, Message Flow](flow.png)
+
+# Mini Howto
 #### Create new project
 > laravel new l58-EchoServer
 #### install predis
@@ -73,6 +86,3 @@ laravel-echo-server start
 
 How to issue Bearer Token
 > $user->createToken('Token Name')->accessToken;
-
-
-![Auth Flow, Message Flow](flow.png)

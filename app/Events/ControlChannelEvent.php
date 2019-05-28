@@ -13,15 +13,19 @@ use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 class ControlChannelEvent
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
-
+    public $msg;
+    public $user;
+    protected $channel;
     /**
      * Create a new event instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct($user, $msg)
     {
-        //
+        $this->msg = $msg;
+        $this->user = $user;
+        $this->channel = "u." . $user->id; 
     }
 
     /**
@@ -31,6 +35,6 @@ class ControlChannelEvent
      */
     public function broadcastOn()
     {
-        return new PrivateChannel('channel-name');
+        return new PrivateChannel($this->channel);
     }
 }

@@ -1,6 +1,7 @@
 <?php
 
 use App\Broadcasting\ChatChannel;
+use App\Broadcasting\ControlChannel;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,3 +15,4 @@ use App\Broadcasting\ChatChannel;
 */
 
 Broadcast::channel('u2u.{chat}', ChatChannel::class);
+Broadcast::channel('u.{id}', ControlChannel::class);
