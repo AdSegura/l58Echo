@@ -25,6 +25,6 @@ class ChatChannel
      */
     public function join(User $user, Chat $chat)
     {
-        return true;
+        return $chat->isUserAllow($user);
     }
 }
