@@ -106,8 +106,7 @@
             });
 
             window.Echo.private('u.1')
-                .listen('\\App\\Events\ControlChannelEvent', (payload) => {
-                    console.log("WEEEEEE");
+                .listen('ControlChannelEvent', (payload) => {
                     console.log(payload);
             });
         },

@@ -69,3 +69,11 @@ window.Echo = new Echo({
         },
     },
 });
+
+/**  
+ * setup [X - Socket - ID] axios header 
+ *   
+*/
+window.Echo.connector.socket.on('connect', ()=> {
+    window.axios.defaults.headers.common['X-Socket-ID'] = window.Echo.socketId();
+})

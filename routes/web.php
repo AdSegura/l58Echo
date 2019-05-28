@@ -33,12 +33,9 @@ Route::post('/chat/{chat}', function (App\Chat $chat, Request $request) {
 
 Route::get('/control', function () {
     
-    broadcast(new ControlChannelEvent(
-            Auth::user(),
-            "msg control"
-    ));
+    $f = broadcast(new ControlChannelEvent(Auth::user(), "msg control" ));
 
-	return ["ok" => Auth::user()];
+	return ["ok" => $f];
 });
 
 Route::get('/to/{chat}', function (App\Chat $chat) {
