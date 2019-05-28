@@ -73,3 +73,6 @@ laravel-echo-server start
 
 How to issue Bearer Token
 > $user->createToken('Token Name')->accessToken;
+
+
+![Auth Flow, Message Flow](flow.png)
