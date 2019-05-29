@@ -1,6 +1,6 @@
 # Laravel 5.8, Echo Server, Echo Client, Socket Io, Redis
 
-Laravel Chat App with PresenceChannels, using Echo Server as SocketIo server all connected with Redis.
+Proof of concept, Laravel Chat App with PresenceChannels, using Echo Server as SocketIo server all connected with Redis.
 
 Frontend use Vue and Vue-Router.
 
@@ -83,6 +83,18 @@ laravel-echo-server start
 #### make Two New Events
 > php artisan make:event ControlChannelEvent
 > php artisan make:event ChatMessageEvent
+
+#### Fire events from Tinker
+> broadcast(new App\Events\NewChatEvent($user, 'My Message'))
+Above command will not fire the event until __destruct method is called
+
+> broadcast(new App\Events\NewChatEvent($user, 'My Message'))->__destruct()
+
+With event() it get fired without need to call extra methods
+> event(new App\Events\NewChatEvent($user, 'My Message'))
+
+#### Monitor Redis
+> redis-cli -h redis.local monitor
 
 How to issue Bearer Token
 > $user->createToken('Token Name')->accessToken;

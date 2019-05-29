@@ -94,12 +94,6 @@
             console.log('Component HOME  mounted.')
         },
         created() {
-            // window.Echo.private('chat')
-            // .listen('ServerReady', ({msg, user}) => {
-            //     this.messages.push({msg, user});
-            //     console.log(msg, user);
-            // });
-
             window.Echo.join('u2u.1')
             .listen('ChatMessageEvent', ({msg, user}) => {
                 console.log(msg, user);
@@ -108,7 +102,10 @@
             window.Echo.private('u.1')
                 .listen('ControlChannelEvent', (payload) => {
                     console.log(payload);
-            });
+            })
+                .listen('NewChatEvent', (payload) => {
+                    console.log(payload)
+            })
         },
         methods: {
             send: function(e){

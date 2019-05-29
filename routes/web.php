@@ -33,9 +33,9 @@ Route::post('/chat/{chat}', function (App\Chat $chat, Request $request) {
 
 Route::get('/control', function () {
     
-    $f = broadcast(new ControlChannelEvent(Auth::user(), "msg control" ));
+    broadcast(new ControlChannelEvent(Auth::user(), "msg control" ));
 
-	return ["ok" => $f];
+	return ["ok" => true];
 });
 
 Route::get('/to/{chat}', function (App\Chat $chat) {
@@ -50,5 +50,7 @@ Route::get('/to/{chat}', function (App\Chat $chat) {
 
 	return ["ok" => Auth::user()];
 });
+
+
 
 Route::get('/home', 'HomeController@index')->name('home');

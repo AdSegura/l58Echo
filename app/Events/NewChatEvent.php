@@ -10,10 +10,10 @@ use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Broadcasting\InteractsWithSockets;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 
-class ControlChannelEvent implements ShouldBroadcast
+class NewChatEvent implements ShouldBroadcast
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
-    
+
     public $msg;
     public $user;
     protected $channel;
@@ -27,7 +27,7 @@ class ControlChannelEvent implements ShouldBroadcast
     {
         $this->msg = $msg;
         $this->user = $user;
-        $this->channel = "u." . $user->id; 
+        $this->channel = "u." . $user->id;
     }
 
     /**
